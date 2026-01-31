@@ -113,8 +113,8 @@ form.addEventListener('submit', async (e) => {
             progressFill.style.width = `${progress}%`;
         }, 200);
 
-        // Send request
-        const response = await fetch('http://localhost:3000/upload', {
+        // Send request - using relative path for deployment compatibility
+        const response = await fetch('/upload', {
             method: 'POST',
             body: formData,
         });
