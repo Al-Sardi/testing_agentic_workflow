@@ -17,8 +17,9 @@ app.use(express.json());
 app.use(express.static('.')); // Serve static files from current directory
 
 // Create uploads directory if it doesn't exist
-const uploadsDir = path.join(__dirname, 'uploads');
-if (!fs.existsSync(uploadsDir)) {
+// Use /tmp for Vercel compatibility
+const uploadsDir = process.env.VERCEL ? '/tmp' : path.join(__dirname, 'uploads');
+if (!process.env.VERCEL && !fs.existsSync(uploadsDir)) {
     fs.mkdirSync(uploadsDir);
 }
 
@@ -297,7 +298,12 @@ app.get('/health', (req, res) => {
 });
 
 // Start server
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-    console.log('Make sure to configure your .env file with SMTP and API credentials');
-});
+if (!process.env.VERCEL) {
+    app.listen(PORT, () => {
+        console.log(`Server is running on http://localhost:${PORT}`);
+        console.log('Make sure to configure your .env file with SMTP and API credentials');
+    });
+}
+
+// Export for Vercel
+module.exports = app;
