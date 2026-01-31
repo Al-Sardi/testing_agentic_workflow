@@ -108,6 +108,8 @@ async function summarizeText(text) {
 
             const prompt = `Please analyze the following document and provide an **optimal, well-structured summary** in HTML format.
             
+            **SPRACHE: BITTE ERSTELLE DIE ZUSAMMENFASSUNG AUF DEUTSCH.**
+            
             **Formatting Requirements:**
             - Use HTML tags (<p>, <strong>, <ul>, <li>) for formatting.
             - **Highlight important keywords and concepts** using <strong> tags.
