@@ -139,8 +139,9 @@ form.addEventListener('submit', async (e) => {
                 progressFill.style.width = '0%';
             }, 1000);
         } else {
-            // Error from server
-            throw new Error(data.error || 'Ein Fehler ist aufgetreten');
+            // Error from server - provide detailed message if available
+            const detailedError = data.details ? `${data.error}: ${data.details}` : (data.error || 'Ein Fehler ist aufgetreten');
+            throw new Error(detailedError);
         }
 
     } catch (error) {
