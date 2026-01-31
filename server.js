@@ -50,15 +50,21 @@ const upload = multer({
 // Initialize Google AI
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_AI_API_KEY);
 
-// Configure email transporter
+// Configure email transporter with more robust settings for cloud deployment
 const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
     port: parseInt(process.env.SMTP_PORT),
-    secure: false, // true for 465, false for other ports
+    // Use secure true for port 465, false for others (like 587)
+    secure: process.env.SMTP_PORT === '465',
     auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
     },
+    tls: {
+        // Essential for some cloud providers to prevent connection hangs
+        rejectUnauthorized: false
+    },
+    connectionTimeout: 10000, // 10 seconds timeout
 });
 
 // Extract text from PDF
