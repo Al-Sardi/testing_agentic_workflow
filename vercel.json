@@ -8,8 +8,16 @@
     ],
     "routes": [
         {
-            "src": "/(.*)",
+            "src": "/upload",
             "dest": "server.js"
+        },
+        {
+            "src": "/health",
+            "dest": "server.js"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/$1"
         }
     ]
 }
