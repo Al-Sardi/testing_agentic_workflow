@@ -186,7 +186,8 @@ async function sendEmail(to, name, summary, originalFileName) {
         return info;
     } catch (error) {
         console.error('Error sending email:', error);
-        throw new Error('Failed to send email');
+        // Return the specific error message to help identify SMTP issues
+        throw new Error(`Failed to send email: ${error.message}`);
     }
 }
 
