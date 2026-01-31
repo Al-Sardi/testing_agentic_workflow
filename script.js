@@ -12,6 +12,9 @@ const successMessage = document.getElementById('successMessage');
 const errorMessage = document.getElementById('errorMessage');
 const successText = document.getElementById('successText');
 const errorText = document.getElementById('errorText');
+const resultsContainer = document.getElementById('resultsContainer');
+const summaryContent = document.getElementById('summaryContent');
+const emailWarning = document.getElementById('emailWarning');
 
 // Error message elements
 const nameError = document.getElementById('nameError');
@@ -129,8 +132,24 @@ form.addEventListener('submit', async (e) => {
             progressText.textContent = 'Erfolgreich hochgeladen!';
             setTimeout(() => {
                 progressContainer.classList.remove('active');
-                successText.textContent = data.message || 'Ihre PDF wurde erfolgreich verarbeitet. Überprüfen Sie Ihre E-Mail für die Zusammenfassung.';
+                successText.textContent = data.message || 'Ihre PDF wurde erfolgreich verarbeitet.';
                 successMessage.classList.add('active');
+
+                // Display summary on page
+                if (data.summary) {
+                    summaryContent.innerHTML = data.summary;
+                    resultsContainer.classList.add('active');
+
+                    // Show warning if email failed
+                    if (data.emailSent === false) {
+                        emailWarning.classList.add('active');
+                    } else {
+                        emailWarning.classList.remove('active');
+                    }
+
+                    // Scroll to results
+                    resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
 
                 // Reset form
                 form.reset();

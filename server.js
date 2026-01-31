@@ -246,16 +246,32 @@ app.post('/upload', upload.single('pdf'), async (req, res) => {
         const summary = await summarizeText(pdfText);
         console.log('Summary generated successfully');
 
-        // Send email
-        await sendEmail(email, name, summary, req.file.originalname);
-        console.log('Email sent successfully');
+        // Send email (optional - if it fails, we still return the summary)
+        let emailSent = true;
+        let emailError = null;
+        try {
+            await sendEmail(email, name, summary, req.file.originalname);
+            console.log('Email sent successfully');
+        } catch (e) {
+            console.error('Email delivery failed:', e.message);
+            emailSent = false;
+            emailError = e.message;
+        }
 
         // Clean up uploaded file
-        fs.unlinkSync(req.file.path);
+        if (fs.existsSync(req.file.path)) {
+            fs.unlinkSync(req.file.path);
+        }
 
+        // Return summary directly to frontend
         res.json({
             success: true,
-            message: 'PDF processed successfully! Check your email for the summary.',
+            summary: summary,
+            emailSent: emailSent,
+            emailError: emailError,
+            message: emailSent
+                ? 'PDF erfolgreich verarbeitet! Die Zusammenfassung wurde per E-Mail gesendet.'
+                : 'Zusammenfassung erstellt, aber der E-Mail-Versand wurde blockiert.'
         });
 
     } catch (error) {
@@ -263,11 +279,11 @@ app.post('/upload', upload.single('pdf'), async (req, res) => {
 
         // Clean up file if it exists
         if (req.file && fs.existsSync(req.file.path)) {
-            fs.unlinkSync(req.file.path);
+            try { fs.unlinkSync(req.file.path); } catch (e) { }
         }
 
         res.status(500).json({
-            error: 'An error occurred while processing your request',
+            error: 'Ein Fehler ist bei der Verarbeitung aufgetreten',
             details: error.message
         });
     }

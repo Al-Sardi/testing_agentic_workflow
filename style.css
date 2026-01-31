@@ -4,28 +4,28 @@
   --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
   --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
   --error-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-  
+
   --primary-color: #667eea;
   --primary-dark: #5568d3;
   --secondary-color: #764ba2;
-  
+
   --text-primary: #1a202c;
   --text-secondary: #4a5568;
   --text-light: #718096;
-  
+
   --bg-primary: #ffffff;
   --bg-secondary: #f7fafc;
   --bg-glass: rgba(255, 255, 255, 0.85);
-  
+
   --border-color: #e2e8f0;
   --border-radius: 16px;
   --border-radius-sm: 8px;
-  
+
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
   --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
   --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.15);
-  
+
   --transition-fast: 0.2s ease;
   --transition-normal: 0.3s ease;
   --transition-slow: 0.5s ease;
@@ -69,8 +69,13 @@ body {
 }
 
 @keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .container {
@@ -92,6 +97,7 @@ body {
     opacity: 0;
     transform: translateY(-20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -112,8 +118,15 @@ body {
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 .icon {
@@ -154,6 +167,7 @@ h1 {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -272,6 +286,7 @@ input[type="file"] {
     opacity: 0;
     transform: translateX(-10px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -297,9 +312,19 @@ input[type="file"] {
 }
 
 @keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  75% { transform: translateX(5px); }
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-5px);
+  }
+
+  75% {
+    transform: translateX(5px);
+  }
 }
 
 .progress-container {
@@ -313,8 +338,13 @@ input[type="file"] {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .progress-bar {
@@ -398,6 +428,7 @@ input[type="file"] {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -480,8 +511,15 @@ input[type="file"] {
 }
 
 @keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
 }
 
 .feature h3 {
@@ -519,9 +557,94 @@ input[type="file"] {
   }
 }
 
-/* Loading Animation */
+/* Results Display */
+.results-container {
+  display: none;
+  margin-top: 30px;
+  animation: slideInUp 0.6s ease;
+}
+
+.results-container.active {
+  display: block;
+}
+
+.results-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.results-icon {
+  font-size: 2rem;
+}
+
+.results-header h2 {
+  font-size: 1.5rem;
+  color: white;
+}
+
+.email-warning {
+  display: none;
+  background: rgba(254, 235, 200, 0.1);
+  border: 1px solid #feebc8;
+  color: #feebc8;
+  padding: 15px;
+  border-radius: var(--border-radius-sm);
+  margin-bottom: 25px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.email-warning.active {
+  display: block;
+}
+
+.summary-content {
+  color: #e2e8f0;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.summary-content p {
+  margin-bottom: 1.5rem;
+}
+
+.summary-content strong {
+  color: white;
+  font-weight: 600;
+  background: rgba(102, 126, 234, 0.2);
+  padding: 0 4px;
+  border-radius: 4px;
+}
+
+.summary-content ul,
+.summary-content ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.summary-content li {
+  margin-bottom: 0.5rem;
+}
+
+.submit-button.secondary {
+  margin-top: 30px;
+  background: transparent;
+  border: 2px solid var(--primary-color);
+  box-shadow: none;
+}
+
+.submit-button.secondary:hover {
+  background: rgba(102, 126, 234, 0.1);
+}
+
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .submit-button.loading .button-icon {
