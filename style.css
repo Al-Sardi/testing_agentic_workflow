@@ -574,7 +574,7 @@ input[type="file"] {
   gap: 15px;
   margin-bottom: 25px;
   padding-bottom: 15px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .results-icon {
@@ -583,19 +583,22 @@ input[type="file"] {
 
 .results-header h2 {
   font-size: 1.5rem;
-  color: white;
+  color: var(--text-primary);
 }
 
 .email-warning {
   display: none;
-  background: rgba(254, 235, 200, 0.1);
-  border: 1px solid #feebc8;
-  color: #feebc8;
-  padding: 15px;
+  background: #fff9db;
+  /* Light yellow background */
+  border: 1.5px solid #ffec99;
+  color: #856404;
+  /* Darker brown/yellow text for contrast */
+  padding: 18px;
   border-radius: var(--border-radius-sm);
   margin-bottom: 25px;
   font-size: 0.95rem;
   line-height: 1.5;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 .email-warning.active {
@@ -603,20 +606,20 @@ input[type="file"] {
 }
 
 .summary-content {
-  color: #e2e8f0;
+  color: var(--text-primary);
   font-size: 1.05rem;
-  line-height: 1.7;
+  line-height: 1.8;
 }
 
 .summary-content p {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.2rem;
 }
 
 .summary-content strong {
-  color: white;
-  font-weight: 600;
-  background: rgba(102, 126, 234, 0.2);
-  padding: 0 4px;
+  color: var(--primary-dark);
+  font-weight: 700;
+  background: rgba(102, 126, 234, 0.12);
+  padding: 2px 6px;
   border-radius: 4px;
 }
 
@@ -624,21 +627,24 @@ input[type="file"] {
 .summary-content ol {
   margin-bottom: 1.5rem;
   padding-left: 1.5rem;
+  color: var(--text-secondary);
 }
 
 .summary-content li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
 }
 
 .submit-button.secondary {
   margin-top: 30px;
-  background: transparent;
+  background: white;
+  color: var(--primary-color);
   border: 2px solid var(--primary-color);
   box-shadow: none;
 }
 
 .submit-button.secondary:hover {
-  background: rgba(102, 126, 234, 0.1);
+  background: var(--bg-secondary);
+  transform: translateY(-2px);
 }
 
 @keyframes spin {
