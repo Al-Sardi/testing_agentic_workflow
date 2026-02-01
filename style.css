@@ -524,13 +524,13 @@ input[type="file"] {
 
 .feature h3 {
   font-size: 1.1rem;
-  color: white;
+  color: rgb(3, 60, 70);
   margin-bottom: 8px;
 }
 
 .feature p {
   font-size: 0.9rem;
-  color: #a0aec0;
+  color: #000000;
   line-height: 1.4;
 }
 
