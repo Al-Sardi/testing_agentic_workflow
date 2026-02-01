@@ -16,12 +16,16 @@
             "dest": "server.js"
         },
         {
-            "src": "/(index.html|style.css|script.js)",
-            "continue": true
+            "src": "/style.css",
+            "dest": "/style.css"
         },
         {
-            "src": "/",
-            "dest": "server.js"
+            "src": "/script.js",
+            "dest": "/script.js"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/index.html"
         }
     ]
 }
