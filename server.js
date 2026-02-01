@@ -297,6 +297,11 @@ app.get('/health', (req, res) => {
     res.json({ status: 'OK', timestamp: new Date().toISOString() });
 });
 
+// Root route to serve index.html explicitly
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 // Start server
 if (!process.env.VERCEL) {
     app.listen(PORT, () => {

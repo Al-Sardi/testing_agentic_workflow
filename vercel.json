@@ -16,10 +16,11 @@
             "dest": "server.js"
         },
         {
-            "handle": "filesystem"
+            "src": "/(index.html|style.css|script.js)",
+            "continue": true
         },
         {
-            "src": "/(.*)",
+            "src": "/",
             "dest": "server.js"
         }
     ]
